@@ -1,0 +1,86 @@
+#! /bin/sh
+#
+#[ -f "somefile" ]  : Test if somefile is a file.
+#[ -x "/bin/ls" ]   : Test if /bin/ls exists and is executable.
+#[ -n "$var" ]      : Test if the variable $var contains something
+#[ "$a" = "$b" ]    : Test if the variables "$a" and  "$b" are equal
+#
+
+check_result='Y'
+pcsc_driver_path_found='N'
+pcscd_exist='N'
+usbfs_exist='N'
+
+if [ -x "/usr/local/sbin/pcscd" ]; then
+	pcscd_exist='Y'
+fi
+
+if [ -x "/usr/sbin/pcscd" ]; then
+	pcscd_exist='Y'
+fi
+
+if [ -x "/sbin/pcscd" ]; then
+	pcscd_exist='Y'
+fi
+
+if pcscd -v; then
+	pcscd_exist='Y'
+fi
+
+if [ $pcscd_exist = 'N' ]; then		
+	echo "Warning! Cannot Find PC/SC Daemon!"
+	echo "Please install PC/SC Lite from Website http://www.linuxnet.com"
+	check_result='N'
+else
+	echo "PC/SC Daemon Ready!"
+fi
+
+if [ -f "/proc/bus/usb/devices" ]; then
+	echo "/proc/bus/usb Detected"
+	usbfs_exist='Y'
+fi
+
+if [ -d "/dev/bus/usb/001" ]; then
+	echo "/dev/bus/usb Detected"
+	usbfs_exist='Y'
+fi
+
+if [ $usbfs_exist = 'N' ]; then
+	echo "Error! USB Device File System Not Mounted"
+	echo "Please mount usbfs first by \"mount -t usbfs none /proc/bus/usb\""
+	check_result='N'
+else
+	echo "USB Device File System Ready!"
+fi
+
+if [ -d "/usr/local/pcsc" ]; then
+	echo "Found PC/SC Driver Location - /usr/local/pcsc"
+	pcsc_driver_path_found='Y'
+fi
+
+if [ -d "/usr/pcsc" ]; then
+	echo "Found PC/SC Driver Location - /usr/pcsc"
+	pcsc_driver_path_found='Y'
+fi
+
+if [ -d "/usr/lib/pcsc" ]; then
+	echo "Found PC/SC Driver Location - /usr/lib/pcsc"
+	pcsc_driver_path_found='Y'
+fi
+
+if [ -d "/usr/lib/readers" ]; then
+	echo "Found PC/SC Driver Location - /usr/lib/readers"	
+	pcsc_driver_path_found='Y'
+fi
+
+if [ -d "/usr/lib64/readers" ]; then
+	echo "Found PC/SC Driver Location - /usr/lib64/readers"	
+	pcsc_driver_path_found='Y'
+fi
+
+if [ $check_result = 'Y' ]; then
+	echo "Environment Check OK!"
+else
+	echo "Environment Not OK!"
+fi
+

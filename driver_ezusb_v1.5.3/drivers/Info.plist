@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist SYSTEM "file://localhost/System/Library/DTDs/PropertyList.dtd">
+<plist version="0.9">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>Taiwan</string>
+	<key>CFBundleExecutable</key>
+	<string>ezusb.so</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundlePackageType</key>
+	<string>BNDL</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>0.0.1d1</string>
+	<key>ifdCapabilities</key>
+	<string>0x00000000</string>
+	<key>ifdFriendlyName</key>
+	<string>CASTLES EZ100PU</string>
+	<key>ifdManufacturerString</key>
+	<string>CASTLES</string>
+	<key>ifdProductID</key>
+	<string>0x0010</string>
+	<key>ifdProductString</key>
+	<string>EZ100PU</string>
+	<key>ifdProtocolSupport</key>
+	<string>0x00000001</string>
+	<key>ifdVendorID</key>
+	<string>0x0CA6</string>
+	<key>ifdVersionNumber</key>
+	<string>0x00000001</string>
+</dict>
+</plist>
